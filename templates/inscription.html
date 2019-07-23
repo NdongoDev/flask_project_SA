@@ -1,0 +1,471 @@
+{% include "head.html" %}
+
+<body>
+
+  {% block body %}
+  {% include "header.html" %}
+  <main>
+    <div class="container">
+      <div class="card">
+        <div class="card-content">
+          <h4 class="center">Inscription apprenant</h4>
+          <p class="center">
+            Bienvenue dans la page d'inscription des apprenants de la Sonatel Academy! Vous y trouverez aussi la liste
+            des apprenants.
+          </p>
+        </div>
+        {%with messages = get_flashed_messages()%}
+        {%if messages%}
+        {%for message in messages%}
+        <div class="alert alert-success alert-dismisssable">
+          <button class="close" type="button" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">x</span>
+          </button>
+          {{message}}
+        </div>
+        {%endfor%}
+        {%endif%}
+        {%endwith%}
+        <div class="card-tabs">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a class="active" href="#inscription">Inscription</a></li>
+            <li class="tab"><a href="#liste_apprenant">Liste des inscris</a></li>
+            <li class="tab"><a href="#liste_annule">Inscriptions annulées</a></li>
+            <li class="tab"><a href="#liste_suspendu">Inscriptions suspendu</a></li>
+          </ul>
+        </div>
+        <div id="mymodal" class="card-content grey lighten-4">
+          <div id="inscription" role="dialog">
+            <div class="row">
+              <form class="col s12" action="{{url_for('insertapp')}}" method="POST">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input placeholder="Astou" id="first_name" type="text" class="validate" name="first_name">
+                    <label for="first_name">Prénom</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input placeholder="Ndiaye" id="last_name" type="text" class="validate" name="last_name">
+                    <label for="last_name">Nom</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input placeholder="astoundiaye@sonatelacademy.sn" id="email" type="email" class="validate"
+                      name="email">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-field col s6">
+                      <input id="date_naissance" type="date" class="validate" name="date_naissance">
+                      <label for="date_naiss">Date naissance</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input placeholder="Mariste, villa 0784" id="adresse" type="text" class="validate" name="adresse">
+                    <label for="adresse">Adresse</label>
+                  </div>
+                
+                  <div class="input-field col s6">
+                    <select name="promotion" id="promotion">
+                      <option value="" disabled selected>Choisir un promo</option>
+                      {% for data1 in promotion%}
+                      <option value="{{data1[0]}}"> {{data1[1]}} </option>
+                      {% endfor %}
+                    </select>
+                    <label>Promotion</label>
+                  </div>
+                </div>
+                <div class="center">
+                  <button class="center btn waves-effect waves-light teal darken-4" type="submit" name="action"
+                    data-toggle="modal" data-target="#mymodal">Inscrire
+                    <a href="inscription"><i class="material-icons right">send</i></a>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <!--Liste apprenant-->
+          
+          <div id="liste_apprenant">
+              <div class="input-field col s12">
+                  <select name="promotion" id="promotion">
+                    <option value="" disabled selected>Choisir un promo</option>
+                    {% for data1 in promotion%}
+                    <option value="{{data1[0]}}"> {{data1[1]}} </option>
+                    {% endfor %}
+                  </select>
+                  <label>Promotion</label>
+                </div>
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Prénom</th>
+                  <th>Nom</th>
+                  <th class="center">Email</th>
+                  <th>Age</th>
+                  <th class="center">Date naissance</th>
+                  <th>Sexe</th>
+                  <th>Adresse</th>
+                  <th>Tuteur</th>
+                  <th>Nom promo</th>
+
+
+                </tr>
+              </thead>
+              {%for data in inscription%}
+              <tbody>
+                <tr>
+                  <!--td>{{data.0}}</td-->
+                  <td>{{data.1}}</td>
+                  <td>{{data.2}}</td>
+                  <td>{{data.3}}</td>
+                  <td>{{data.4}}</td>
+                  <td>{{data.5}}</td>
+                  <td>{{data.6}}</td>
+                  <td>{{data.7}}</td>
+                  <td>{{data.8}}</td>
+                  <td>{{data.9}}</td>
+                  <td>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#modaledit{{data.0}}">Edit</a>
+                    <a class="waves-effect waves-light btn modal-trigger" href="/delete/{{data.0}}"
+                      onclick="return confirm('Are you sure to delete ?')">Delete</a>
+                  </td>
+                </tr>
+              </tbody>
+              <div id="modaledit{{data.0}}" class="modal" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Modifier les informations </h4>
+                    </div>
+                    <div class="modal-body">
+                      <form action="{{url_for('updateIns')}}" method="POST">
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="hidden" name="id" value="{{data.0}}">
+                            <input placeholder="Astou" type="text" class="validate" name="first_name"
+                              value="{{data.1}}">
+                            <label for="first_name">Prénom</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input type="text" class="validate" name="last_name" value="{{data.2}}">
+                            <label for="last_name">Nom</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="email" class="validate" name="email" value="{{data.3}}">
+                            <label for="email">Email</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input type="date" class="validate" name="age" value="{{data.4}}">
+                            <label for="age">Age</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="date" class="validate" name="date_naissance" value="{{data.5}}">
+                            <label for="date_naiss">Date naissance</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="text" class="validate" name="adresse" value="{{data.7}}">
+                            <label for="adresse">Adresse</label>
+                          </div>
+                        <div class="data">
+                          <div class="input-field col s12">
+
+
+                            {% for data1 in promotion%}
+                            <input name="promotion" value="{{data1[0]}}">
+                            {% endfor %}
+
+                            <label>Promotion</label>
+                          </div>
+                        </div>
+                        <div class="center">
+                          <button class="center btn waves-effect waves-light teal darken-4" type="submit" name="action"
+                            data-toggle="modal" data-target="#mymodal">Inscrire
+                            <a href="inscription"><i class="material-icons right">send</i></a>
+                          </button>
+                        </div>
+
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </table>
+          </div>
+          <!--Liste annule-->
+          <div id="liste_annule">
+              <div class="input-field col s12">
+                  <select name="promotion" id="promotion">
+                    <option value="" disabled selected>Choisir un promo</option>
+                    {% for data1 in promotion%}
+                    <option value="{{data1[0]}}"> {{data1[1]}} </option>
+                    {% endfor %}
+                  </select>
+                  <label>Promotion</label>
+                </div>
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Prénom</th>
+                  <th>Nom</th>
+                  <th class="center">Email</th>
+                  <th>Age</th>
+                  <th class="center">Date naissance</th>
+                  <th>Sexe</th>
+                  <th>Adresse</th>
+                  <th>Tuteur</th>
+                  <th>Nom promo</th>
+
+
+                </tr>
+              </thead>
+              {%for data in inscription%}
+              <tbody>
+                <tr>
+                  <td>{{data.0}}</td>
+                  <td>{{data.1}}</td>
+                  <td>{{data.2}}</td>
+                  <td>{{data.3}}</td>
+                  <td>{{data.4}}</td>
+                  <td>{{data.5}}</td>
+                  <td>{{data.6}}</td>
+                  <td>{{data.7}}</td>
+                  <td>{{data.8}}</td>
+                  <td>{{data.9}}</td>
+                  
+                </tr>
+              </tbody>
+              <div id="modaledit{{data.0}}" class="modal" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Modifier les informations </h4>
+                    </div>
+                    <div class="modal-body">
+                      <form action="{{url_for('updateIns')}}" method="POST">
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="hidden" name="id" value="{{data.0}}">
+                            <input placeholder="Astou" type="text" class="validate" name="first_name"
+                              value="{{data.1}}">
+                            <label for="first_name">Prénom</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input type="text" class="validate" name="last_name" value="{{data.2}}">
+                            <label for="last_name">Nom</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="email" class="validate" name="email" value="{{data.3}}">
+                            <label for="email">Email</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input type="date" class="validate" name="age" value="{{data.4}}">
+                            <label for="age">Age</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="date" class="validate" name="date_naissance" value="{{data.5}}">
+                            <label for="date_naiss">Date naissance</label>
+                          </div>
+                          <div class="input-field col s6">
+
+
+                            <input name="sexe" value="{{data.6}}">
+
+                            <label for="sexe">Sexe</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="text" class="validate" name="adresse" value="{{data.7}}">
+                            <label for="adresse">Adresse</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input type="text" class="validate" name="tuteur" value="{{data.8}}">
+                            <label for="Tuteur">Tuteur</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s12">
+
+
+                            {% for data1 in promotion%}
+                            <input name="promotion" value="{{data1[0]}}">
+                            {% endfor %}
+
+                            <label>Promotion</label>
+                          </div>
+                        </div>
+                        <div class="center">
+                          <button class="center btn waves-effect waves-light teal darken-4" type="submit" name="action"
+                            data-toggle="modal" data-target="#mymodal">Inscrire
+                            <a href="inscription"><i class="material-icons right">send</i></a>
+                          </button>
+                        </div>
+
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </table>
+          </div>
+          <!--fin liste annule-->
+          
+          <!--Liste_suspendu-->
+          <div id="liste_suspendu">
+              <div class="input-field col s12">
+                  <select name="promotion" id="promotion">
+                    <option value="" disabled selected>Choisir un promo</option>
+                    {% for data1 in promotion%}
+                    <option value="{{data1[0]}}"> {{data1[1]}} </option>
+                    {% endfor %}
+                  </select>
+                  <label>Promotion</label>
+                </div>
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Prénom</th>
+                  <th>Nom</th>
+                  <th class="center">Email</th>
+                  <th>Age</th>
+                  <th class="center">Date naissance</th>
+                  <th>Sexe</th>
+                  <th>Adresse</th>
+                  <th>Tuteur</th>
+                  <th>Nom promo</th>
+
+
+                </tr>
+              </thead>
+              {%for data in inscription%}
+              <tbody>
+                <tr>
+                  <!--td>{{data.0}}</td-->
+                  <td>{{data.1}}</td>
+                  <td>{{data.2}}</td>
+                  <td>{{data.3}}</td>
+                  <td>{{data.4}}</td>
+                  <td>{{data.5}}</td>
+                  <td>{{data.6}}</td>
+                  <td>{{data.7}}</td>
+                  <td>{{data.8}}</td>
+                  <td>{{data.9}}</td>
+                  <td>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#modaledit{{data.0}}">Edit</a>
+                    <a class="waves-effect waves-light btn modal-trigger" href="/delete/{{data.0}}"
+                      onclick="return confirm('Are you sure to delete ?')">Delete</a>
+                  </td>
+                </tr>
+              </tbody>
+              <div id="modaledit{{data.0}}" class="modal" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Modifier les informations </h4>
+                    </div>
+                    <div class="modal-body">
+                      <form action="{{url_for('updateIns')}}" method="POST">
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="hidden" name="id" value="{{data.0}}">
+                            <input placeholder="Astou" type="text" class="validate" name="first_name"
+                              value="{{data.1}}">
+                            <label for="first_name">Prénom</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input type="text" class="validate" name="last_name" value="{{data.2}}">
+                            <label for="last_name">Nom</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="email" class="validate" name="email" value="{{data.3}}">
+                            <label for="email">Email</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input type="date" class="validate" name="age" value="{{data.4}}">
+                            <label for="age">Age</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="date" class="validate" name="date_naissance" value="{{data.5}}">
+                            <label for="date_naiss">Date naissance</label>
+                          </div>
+                          <div class="input-field col s6">
+
+
+                            <input name="sexe" value="{{data.6}}">
+
+                            <label for="sexe">Sexe</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s6">
+                            <input type="text" class="validate" name="adresse" value="{{data.7}}">
+                            <label for="adresse">Adresse</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input type="text" class="validate" name="tuteur" value="{{data.8}}">
+                            <label for="Tuteur">Tuteur</label>
+                          </div>
+                        </div>
+                        <div class="data">
+                          <div class="input-field col s12">
+
+
+                            
+
+                            <label>Promotion</label>
+                          </div>
+                        </div>
+                        <div class="center">
+                          <button class="center btn waves-effect waves-light teal darken-4" type="submit" name="action"
+                            data-toggle="modal" data-target="#mymodal">Inscrire
+                            <a href="inscription"><i class="material-icons right">send</i></a>
+                          </button>
+                        </div>
+
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </table>
+          </div>
+          <!---->
+        </div>
+      </div>
+    </div>
+  </main>
+  {% include "footer.html" %}
+  {% include "scriptJS.html" %}
+
+  {% endblock %}
+</body>
+
+</html>

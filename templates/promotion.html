@@ -1,0 +1,171 @@
+{% include "head.html" %}
+<body>
+    {% block body %}
+    {% include "header.html" %}
+    <main>
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <h4 class="center">Promotion</h4>
+                    <p class="center">
+                        Bienvenue dans la page d'ajout de promotion! Vous y trouverez aussi la liste des promotions.
+                    </p>
+                </div>
+                {%with messages = get_flashed_messages()%}
+                {%if messages%}
+                {%for message in messages%}
+                <div class="message-alert">
+                    <script>
+                      alert("{{message}}");
+                    </script>   
+                </div>
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+                <div class="card-tabs">
+                  <ul class="tabs tabs-fixed-width">
+                    <li class="tab"><a class="active" href="#promotion">Promotion</a></li>
+                    <li class="tab"><a href="#liste_promo">Liste des promotions</a></li>
+                  </ul>
+                </div>
+                <div id="mymodal" class="card-content grey lighten-4">
+                  <div id="promotion" role="dialog">
+                        <div class="row">
+                                <form class="col s12" action="{{url_for('insertprom')}}" method="POST" >
+                                  <div class="row">
+                                    <div class="input-field col s6">
+                                      <input placeholder="Astou" id="nom_promo" type="text" class="validate" name="nom_promo">
+                                      <label for="nom_promo">Nom promotion</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select name="referentiel" id="referentiel">
+                                            
+                                            <option value="" disabled selected>Choisissez le referentiel</option>
+                                            {% for data in referentiel %}
+                                            <option value="{{ data[0] }}">{{data[1]}}</option>
+                                            {% endfor %}
+                                          </select>
+                                          
+                                        <label>Réferentiel</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input id="date_debut" type="date" class="validate" name="date_debut">
+                                            <label for="date_debut">Date Debut</label>
+                                          </div>
+                                          <div class="input-field col s6">
+                                              <input id="date_fin" name="date_fin" type="date" class="validate">
+                                              <label for="date_fin">Date Fin</label>
+                                            </div>
+                                    </div>
+                                              
+                                  </div>
+                                  
+                                  <div class="center">
+                                      <button class="center btn waves-effect waves-light teal darken-4" type="submit" name="action" data-toggle="modal" data-target="#mymodal">Sauvegarder
+                                          <a href="promotion"><i class="material-icons right">send</i></a>
+                                        </button>
+                                  </div>   
+                                </form>
+                          </div>  
+                                                     
+                  </div>
+                  <!--exemple table-->
+                  <div id="liste_promo">
+                        <table class="responsive-table">
+                                
+                                <tr>
+                                  
+                                    <th>Nom promotion</th>
+                                    <th>Date debut</th>
+                                    <th>Date fin</th>
+                                    <th>Referentiel</th>
+                                    <th>Action</th>
+                                    
+                                </tr>
+                               
+                                {%for data in promotion%}
+                                
+                                    <tr>
+                                        
+                                        <td>{{data.1}}</td>
+                                        <td>{{data.2}}</td>
+                                        <td>{{data.3}}</td>
+                                        <td>{{data.4}}</td>
+                                        
+                                        <td>
+                                            <a class="waves-effect waves-light btn modal-trigger" href="#modaledit{{data.0}}">Editer</a>
+                                        </td>
+                                        
+                                    </tr>
+                                
+                                {% endfor %}
+                      </table>
+                  </div>
+                                    {% for data in promotion %}
+                                    <div id="modaledit{{data.0}}" class="modal" role="dialog">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Modifier Information promotion </h4>
+                                          </div>
+                                        <div class="row">
+                                                <form action="{{url_for('updateprom')}}" method="POST" >
+                                                  <div class="row">
+                                                    <div class="input-field col s6">
+                                                        <input type="hidden" name="id" value="{{data.0}}">
+                                                        <input type="text" class="form-control" name="nom_promo" value="{{data.1}}">
+                                                        <label for="nom_promo">Nom promotion</label>
+                                                    </div>
+                                                    <div class="input-field col s6" >
+                                                        <select name="referentiel" id="referentiel" >
+                                                            {% for row in referentiel %}
+                                                              {% if data.4 == row[1] %}
+                                                          <option type="text" value="{{row[0]}}" selected class="validate">{{ row[1] }} </option> 
+                                                              {% else %}
+                                                          <option type="text" value="{{row[0]}}" class="validate">{{ row[1] }} </option> 
+                                                              {% endif %}
+                                                          {% endfor %}
+                                                          </select>
+                                                          
+                                                        <label for="referentiel">Réferentiel</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="input-field col s6">
+                                                            <input id="date_debut" type="date" class="validate" name="date_debut">
+                                                            <label for="date_debut">Date Debut</label>
+                                                          </div>
+                                                          <div class="input-field col s6">
+                                                              <input id="date_fin" name="date_fin" type="date" class="validate">
+                                                              <label for="date_fin">Date Fin</label>
+                                                            </div>
+                                                    </div>
+                                                              
+                                                  </div>
+                                                  <div class="center">
+                                                      <button class="btn btn-primary " onclick="M.toast({html: 'Bravos enregistrer avec succée'})" type="submit">
+                                                        Modifier
+                                                      <a href="updateprom"><i class="material-icons right">send</i></a>
+                                                        </button>
+                                                  </div>
+                                                     
+                                                </form>
+                                                
+                                          </div>  
+                                          <div class="modal-footer">
+                                              <a href="#!" class="modal-close waves-effect waves-red btn-flat">Fermer</a>
+                                          </div>                       
+                                  </div>
+                                  {% endfor %}      
+                  </div>
+                  <!--end table-->
+                </div>
+              </div> 
+    </main>
+    {% include "footer.html" %}
+    {% include "scriptJS.html" %}
+    <script>
+      $(document).ready(function () {
+        $('.modal').modal();
+      });
+    </script>
+    {% endblock %}
+</body>

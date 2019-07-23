@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Gestion des apprenants - Sonatel Academy</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="static/css/style.css" media="screen,projection"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </head>
+<body>
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+        </div>
+</body>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="static/js/materialize.js"></script>
+        <script type="text/javascript" src="static/js/jsfile.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".dropdown-button").dropdown({hover:true});
+                $('.sidenav').sidenav();
+                $('.collapsible').collapsible();
+                $('ul.tabs').tabs();
+                $('select').formSelect();//Pour le choix multiple
+                $('.datepicker').datepicker();//Pour date naissance
+                //$('ul.tabs').tabs('select_tab', 'tab_id');
+                $('.modal').modal();
+                
+        })
+        $(document).ready(function(){
+    
+  });
+        </script>

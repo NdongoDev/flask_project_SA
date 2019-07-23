@@ -1,0 +1,111 @@
+{% include "head.html" %}
+
+<body>
+  {% block body %}
+  {% include "header.html" %}
+  <main>
+    <div class="container">
+      <div class="card">
+        <div class="card-content">
+          <h4 class="center">Réferentiel</h4>
+          <p class="center">
+            Bienvenue dans la page d'ajout de réferentiel! Vous y trouverez aussi la liste des réferentiels.
+          </p>
+        </div>
+        {%with messages = get_flashed_messages()%}
+        {%if messages%}
+        {%for message in messages%}
+        <div class="message-alert">
+            <script>
+              alert("{{message}}");
+            </script>   
+        </div>
+        {%endfor%}
+        {%endif%}
+        {%endwith%}
+        <div class="card-tabs">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a class="active" href="#referentiel">Réferentiel</a></li>
+            <li class="tab"><a href="#liste_referentiel">Liste des réferentiels</a></li>
+          </ul>
+        </div>
+        <div id="mymodal" class="card-content grey lighten-4">
+          <div id="referentiel" role="dialog">
+            <div class="row">
+              <form class="col s12" action="{{url_for('insertref')}}" method="POST">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <input id="nom_ref" type="text" class="validate" name="nom_ref">
+                    <label for="nom_ref">Nom réferentiel</label>
+                  </div>
+                </div>
+                <div class="center">
+                  <button class="center btn waves-effect waves-light teal darken-4" type="submit" name="action"
+                    data-toggle="modal" data-target="#mymodal">Sauvegarder
+                    <a href="referentiel"><i class="material-icons right">send</i></a>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          <!--exemple table-->
+          <div id="liste_referentiel">
+              <table class="responsive-table">
+                <thead>
+                  <tr>
+                    <th>Nom réferentiel</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                {%for row in referentiel%} 
+                <tbody>                   
+                  <tr>
+                    <td>{{row.1}}</td>
+                    <td>
+                      <a class="waves-effect waves-light btn modal-trigger" href="#modaledit{{row.0}}">Editer</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </table>
+          </div>
+                        {% for row in referentiel %}
+                        <div id="modaledit{{row.0}}" class="modal" role="dialog">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modifier Information referentiel </h4>
+                            </div>
+                            <div class="row">
+                                    <form action="{{url_for('updateref')}}" method="POST" >
+                                      <div class="form-group">
+                                        <label> Nom promo:</label>
+                                        <input type="hidden" name="id" value="{{row.0}}">  
+                                        <input type="text" class="form-control" name="nom_ref" value="{{row.1}}">
+                                      </div>
+                                      <div class="center">
+                                          <button class="btn btn-primary " onclick="M.toast({html: 'Bravos enregistrer avec succée'})" type="submit">
+                                            Modifier
+                                          <a href="updateref"><i class="material-icons right">send</i></a>
+                                            </button>
+                                      </div>
+                                    </form>
+                            </div>  
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-close waves-effect waves-red btn-flat">Fermer</a>
+                            </div>                       
+                      </div>
+                      {% endfor %}      
+      </div>
+      <!--end table-->
+        </div>
+      </div>
+  </main>
+  {% include "footer.html" %}
+  {% include "scriptJS.html" %}
+  <script>
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
+  </script>
+
+  {% endblock %}
+</body>
