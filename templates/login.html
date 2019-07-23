@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin - Template</title>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="../static/css/materialize.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="../static/css/style.css" media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="../static/css/login.css" media="screen,projection"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    </head>
+    <body>
+        <header>
+             <nav class="nav-wraper teal darken-4">
+                 <div class="container">
+                     <a href="#" class="brand-logo">
+                        <img src="../static/image/academylogo.png" alt="avatar" class="logo-nav-vertical responsive-img">
+                     </a>
+                     <a href="#" class="right name-logo brand-logo hide-on-med-and-down">Sonatel Academy</a>
+                 </div>  
+             </nav>
+        </header>
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="center col s12 m5 offset-m3">
+                        <div class="card col s12 teal darken-3">
+                            <div class="card-content white-text">
+                                <span class="card-title" >Connexion</span>
+                            </div>
+                        </div>
+                        <div class="card-content row grey lighten-3">
+                            <div class="form-field">    
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input placeholder="Pseudo" id="first_name" type="text" class="validate">
+                                            <label for="first_name">Pseudo</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="password" type="password" class="validate">
+                                            <label for="password">Mot de Passe</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        
+                                            <button class="btn-large waves-effect waves-dark"><a href="inscription">Se connecter</a></button>
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="page-footer teal darken-4">
+                <div class="container">
+                  <div class="row">
+                    <div class="col l6 s12">
+                      <h5 class="white-text">Gestion des Apprenants</h5>
+                      <p class="grey-text text-lighten-4">Cette plateforme est conçue pour la gestion des apprenants de la Sonatel Academy.
+                          <br>Ceci est la propriété de Sonatel Academy. <br> Tout droit réserver.
+                      </p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                      <h5 class="white-text">Partenariats</h5>
+                      <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Sonatel</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Orange Sénégal</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer-copyright">
+                  <div class="container">
+                  © 2019 Copyright Sonatel Academy
+                  <a class="grey-text text-lighten-4 right" href="#!">Sonatel Academy</a>
+                  </div>
+                </div>
+        </footer>
+         <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../static/js/materialize.js"></script>
+        <script type="text/javascript" src="../static/js/jsfile.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.sidenav').sidenav();
+                $('.collapsible').collapsible();
+        })
+        </script>
+    </body>
+</html>
