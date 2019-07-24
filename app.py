@@ -87,14 +87,14 @@ def updateIns():
         conn.commit()
         return redirect(url_for('inscription'))
 #supprimer apprenant
-@app.route('/delete/<string:id_data>', methods = ['POST', 'GET'])
-def delete(id_data):
+'''@app.route('/deleteapp/<string:id_data>', methods = ['POST', 'GET'])
+def deleteapp(id_data):
     conn = connectToDB()
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute("DELETE FROM apprenant WHERE id_apprenant = %s", (id_data))
     flash("Data Deleted Successfully")
     conn.commit()
-    return redirect(url_for('inscription'))
+    return redirect(url_for('inscription'))'''
 
 #Sauvegarde referentiel
 @app.route("/referentiel")
@@ -134,6 +134,18 @@ def updateref():
     else:
         return render_template('referentiel.html')
 
+#supprimer referentiel
+'''@app.route('/deleteref/<string:id_data>',methods=['POST','GET'])
+def deleteref(id_data):
+
+        flash("données supprimeés")
+
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur.execute("DELETE FROM  referentiel WHERE id_ref =%s" ,(id_data,))
+        conn.commit()
+    
+        return redirect(url_for('updateref'))'''
 #Promotion
 @app.route("/promotion")  
 def promotion():
@@ -182,7 +194,7 @@ def updateprom():
         cur.execute("""UPDATE promotion 
                     SET nom_promo=%s, date_debut=%s, date_fin=%s, id_ref=%s
                     WHERE id_promo = %s 
-                    """, (nom_promo, date_debut,date_fin,ref, id_data))
+                    """, (nom_promo, date_debut,date_fin, ref, id_data))
         flash("Donnée MAJ avec succée!")
         conn.commit()
         cur.close()
