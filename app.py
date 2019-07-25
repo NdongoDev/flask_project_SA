@@ -25,7 +25,7 @@ def Index():
 def inscription():
     conn = connectToDB()
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-    cur.execute("SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo")
+    cur.execute("SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='inscrit'")
     data = cur.fetchall()
     conn.close()
 
@@ -34,7 +34,20 @@ def inscription():
     cur.execute("SELECT * FROM promotion")
     data1 = cur.fetchall()
     conn.close()
-    return render_template('inscription.html', inscription = data, promotion=data1 )
+
+    conn = connectToDB()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute("""SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='annulé' """)
+    data2 =cur.fetchall()
+    conn.commit()
+
+    conn = connectToDB()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute("""SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='suspendu' """)
+    data3 =cur.fetchall()
+    conn.commit()
+
+    return render_template('inscription.html', inscription = data, promotion=data1, listeannule=data2, listesuspendu = data3 )
 
 @app.route("/insertapp", methods = ["POST"])
 def insertapp():
@@ -103,15 +116,39 @@ def updateIns():
         flash("Donnée MAJ avec succée!")
         conn.commit()
         return redirect(url_for('inscription'))
-#supprimer apprenant
-'''@app.route('/deleteapp/<string:id_data>', methods = ['POST', 'GET'])
-def deleteapp(id_data):
-    conn = connectToDB()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute("DELETE FROM apprenant WHERE id_apprenant = %s", (id_data))
-    flash("Data Deleted Successfully")
-    conn.commit()
-    return redirect(url_for('inscription'))'''
+#action annuler apprennant
+@app.route('/annulerins/<string:id_data>',methods= ['POST','GET'])
+def  annuler(id_data):
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        flash("Inscription annulé")
+        cur.execute("""UPDATE apprenant SET statut='annulé' WHERE id_apprenant =%s""",(id_data,))
+        
+        conn.commit() 
+        
+        return redirect(url_for('inscription'))
+#action suspendre apprennant
+@app.route('/suspendreins/<string:id_data>',methods= ['POST','GET'])
+def  suspendreins(id_data):
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        flash("Inscription suspendu")
+        cur.execute("""UPDATE apprenant SET statut='suspendu' WHERE id_apprenant =%s""",(id_data,))
+        
+        conn.commit() 
+        
+        return redirect(url_for('inscription'))
+#action reinscrire
+@app.route('/reinscrire/<string:id_data>',methods= ['POST','GET'])
+def  reinscrire(id_data):   
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        flash("Réinscription établie avec succés!")
+        cur.execute("""UPDATE apprenant SET statut='inscrit' WHERE id_apprenant =%s""",(id_data,))
+        
+        conn.commit() 
+        
+        return redirect(url_for('inscription'))
 
 #Sauvegarde referentiel
 @app.route("/referentiel")
