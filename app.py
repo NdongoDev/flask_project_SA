@@ -1,6 +1,7 @@
 import psycopg2
 import psycopg2.extras
 import traceback
+import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
@@ -40,20 +41,37 @@ def insertapp():
     if request.method == "POST":
         flash("Inscription reussi")
 
-        matricule = request.form['matricule']
+        #matricule = request.form['matricule']
         prenom = request.form['first_name']
         nom = request.form['last_name']
         email = request.form['email']
         date_naissance = request.form['date_naissance']
         adresse = request.form['adresse']
         statut = request.form['statut'] 
-        tuteur = request.form['tuteur']
         id_promo = int(request.form["promotion"])
+
+        #verification matricule
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur.execute("""select MAX(id_apprenant) from apprenant""")
+        resultat=cur.fetchall()
+        conn.cursor()
+
+        for mat in resultat :
+                    i =mat[0] 
+        date_actu=datetime.datetime.today().strftime("%m%Y")    
+                
+        if i == None:
+            m = 1
+            matricule="SA-00"+str(date_actu)+str(m)
+        else :
+            m = i+1
+            matricule = "SA-00"+str(date_actu)+str(m)
         
         conn = connectToDB()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        sql = "INSERT INTO apprenant (matricule, prenom, nom, email, date_naissance, adresse, statut, tuteur, id_promo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-        donnee = (matricule, prenom, nom, email, date_naissance, adresse, statut, tuteur, id_promo)
+        sql = "INSERT INTO apprenant (matricule, prenom, nom, email, date_naissance, adresse, statut, id_promo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+        donnee = (matricule, prenom, nom, email, date_naissance, adresse, statut, id_promo)
         try:
             cur.execute(sql, donnee)
             conn.commit()
@@ -66,23 +84,22 @@ def insertapp():
 @app.route('/updateIns', methods = ['POST', 'GET'])
 def updateIns():
     if request.method == 'POST':
-        id_data = request.form['id']
+        id_data = request.form['id_app']
         matricule = request.form['matricule']
         prenom = request.form['first_name']
         nom = request.form['last_name']
         email = request.form['email']
         date_naissance = request.form['date_naissance']
         adresse = request.form['adresse']
-        statut = request.form['statut']
-        tuteur = request.form['tuteur']
+        #statut = request.form['statut']
         id_promo = int(request.form["promotion"])
 
         conn = connectToDB()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         cur.execute("""UPDATE apprenant 
-                    SET matricule=%s, prenom=%s, nom = %s, email= %s, date_naissance= %s, adresse = %s, statut=%s, tuteur = %s, id_promo=%s
+                    SET matricule=%s, prenom=%s, nom = %s, email= %s, date_naissance= %s, adresse = %s, statut='inscrit' , id_promo=%s
                     WHERE id_apprenant = %s 
-                    """, (matricule, prenom, nom, email, date_naissance, adresse, statut, tuteur, id_data, id_promo))
+                    """, (matricule, prenom, nom, email, date_naissance, adresse, id_data, id_promo))
         flash("Donnée MAJ avec succée!")
         conn.commit()
         return redirect(url_for('inscription'))
