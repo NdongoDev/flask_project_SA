@@ -17,11 +17,10 @@
         {%with messages = get_flashed_messages()%}
         {%if messages%}
         {%for message in messages%}
-        <div class="alert alert-success alert-dismisssable">
-          <button class="close" type="button" data-dismiss="alert" aria-label="close">
-            <span aria-hidden="true">x</span>
-          </button>
-          {{message}}
+        <div class="message-alert">
+            <script>
+              alert("{{message}}");
+            </script>   
         </div>
         {%endfor%}
         {%endif%}
@@ -109,20 +108,21 @@
               </div>
             <table class="responsive-table">
                 <tr>
-                  <th>ID</th>
+                 
                   <th>matricule</th>
                   <th>Prénom</th>
                   <th>Nom</th>
-                  <th class="center">Email</th>
+                  <th>Email</th>
                   <th class="center">Date naissance</th>
                   <th>Adresse</th>
                   <th>Statut</th>
                   <th>Nom promo</th>
-                  <th>action</th>
+                  <th></th>
+                  <th class="center">Action</th>
                 </tr>
               {%for data in inscription%}
                 <tr>
-                  <td>{{data.0}}</td>
+                  
                   <td>{{data.1}}</td>
                   <td>{{data.2}}</td>
                   <td>{{data.3}}</td>
@@ -133,13 +133,99 @@
                   <td>{{data.8}}</td>
                   <td>
                     <a class="waves-effect waves-light btn modal-trigger" href="#modaledit{{data.0}}">Editer</a>
-                    <!--<a class="waves-effect waves-light btn modal-trigger" href="/delete/{{data.0}}"
-                      onclick="return confirm('Are you sure to delete ?')">Delete</a>-->
+                  </td>
+                  <td>
+                      <a href="/annulerins/{{data.0}}" class="modal-close waves-effect waves-red btn-flat"  onclick="return confirm('Voulez vous vraiment  annuler l\'inscription ?')"> annuler</a>  
+                  </td>
+                  <td>
+                      <a href="/suspendreins/{{data.0}}" class="modal-close waves-effect waves-orange btn-flat"  onclick="return confirm('Voulez vous vraiment  suspendre l\'inscription ?')"> suspendre</a>  
                   </td>
                 </tr>
                 {% endfor %}
             </table>
           </div>
+          <!--Liste apprenant annulé-->
+          
+        <div id="liste_annule">
+            <div class="input-field col s12">
+                <select name="promotion" id="promotion">
+                  <option value="" disabled selected>Choisir un promo</option>
+                  {% for data1 in promotion%}
+                  <option value="{{data1[0]}}"> {{data1[1]}} </option>
+                  {% endfor %}
+                </select>
+                <label>Promotion</label>
+            </div>
+          <table class="responsive-table">
+              <tr>
+              
+                <th>matricule</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th class="center">Email</th>
+                <th class="center">Date naissance</th>
+                <th>Adresse</th>
+                <th>Statut</th>
+                <th>Nom promo</th>
+                
+              </tr>
+            {%for data in listeannule%}
+              <tr>
+                <td>{{data.1}}</td>
+                <td>{{data.2}}</td>
+                <td>{{data.3}}</td>
+                <td>{{data.4}}</td>
+                <td>{{data.5}}</td>
+                <td>{{data.6}}</td>
+                <td>{{data.7}}</td>
+                <td>{{data.8}}</td>
+              </tr>
+            {%endfor%}
+          </table>
+          </div><!--Fin Liste apprenant annulé-->
+          <!--Liste apprenant annulé-->
+          
+        <div id="liste_suspendu">
+            <div class="input-field col s12">
+                <select name="promotion" id="promotion">
+                  <option value="" disabled selected>Choisir un promo</option>
+                  {% for data1 in promotion%}
+                  <option value="{{data1[0]}}"> {{data1[1]}} </option>
+                  {% endfor %}
+                </select>
+                <label>Promotion</label>
+            </div>
+          <table class="responsive-table">
+              <tr>
+                <th>matricule</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th class="center">Email</th>
+                <th class="center">Date naissance</th>
+                <th>Adresse</th>
+                <th>Statut</th>
+                <th>Nom promo</th>
+                <th>Action</th>
+                
+              </tr>
+            {%for data in listesuspendu%}
+              <tr>
+                <td>{{data.1}}</td>
+                <td>{{data.2}}</td>
+                <td>{{data.3}}</td>
+                <td>{{data.4}}</td>
+                <td>{{data.5}}</td>
+                <td>{{data.6}}</td>
+                <td>{{data.7}}</td>
+                <td>{{data.8}}</td>
+                <td>
+                    <a href="/reinscrire/{{data.0}}" class="modal-close waves-effect waves-green btn-flat"  onclick="return confirm('Voulez vous vraiment  suspendre l\'inscription ?')"> Réinscrire</a>   
+                </td>
+              </tr>
+              {% endfor %}
+          </table>
+          </div><!--Fin Liste apprenant suspendu-->
+
           {%for data in inscription%}
               <div id="modaledit{{data.0}}" class="modal" role="dialog">
                     <div class="modal-header">
@@ -213,9 +299,13 @@
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Fermer</a>
                     </div>    
               </div><!--modal-content-->
-            {% endfor %}
+            
           </div><!--modal dialog -->
         </div><!--modaledit-->
+              {% endfor %}
+          </table>
+        </div>
+
       </div><!--mymodal-->  
     </div><!--card-->
     </div><!--container-->
