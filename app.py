@@ -2,10 +2,12 @@ import psycopg2
 import psycopg2.extras
 import traceback
 import datetime
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session, g
+import os
 
 app = Flask(__name__)
 app.secret_key = "flash message"
+app.secret_key = os.urandom(24)
 #connection au DB Postgres
 def connectToDB():  
   try:
@@ -14,38 +16,63 @@ def connectToDB():
     print("Can't connect to database")
     print(traceback.format_exc())
 #page login
-@app.route("/")
+@app.route("/",  methods=['GET', 'POST'])
 def Index():
-    return render_template('login.html')
+        if request.method == 'POST':
+           session.pop('user', None)
+           if request.form['password'] == 'password':
+                session['user'] = request.form['username']
+                return redirect(url_for('inscription'))
+        return render_template('login.html')
+
 
 #inscription Apprenant
 @app.route("/inscription")
 def inscription():
-    conn = connectToDB()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-    cur.execute("SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='inscrit'")
-    data = cur.fetchall()
-    conn.close()
+    if g.user: 
+            
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        cur.execute("SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='inscrit'")
+        data = cur.fetchall()
+        conn.close()
 
-    conn = connectToDB()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute("SELECT * FROM promotion")
-    data1 = cur.fetchall()
-    conn.close()
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur.execute("SELECT * FROM promotion")
+        data1 = cur.fetchall()
+        conn.close()
 
-    conn = connectToDB()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute("""SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='annulé' """)
-    data2 =cur.fetchall()
-    conn.commit()
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur.execute("""SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='annulé' """)
+        data2 =cur.fetchall()
+        conn.commit()
 
-    conn = connectToDB()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute("""SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='suspendu' """)
-    data3 =cur.fetchall()
-    conn.commit()
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur.execute("""SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='suspendu' """)
+        data3 =cur.fetchall()
+        conn.commit()
+        return render_template('inscription.html', inscription = data, promotion=data1, listeannule=data2, listesuspendu = data3 )
+    return redirect(url_for('Index'))
 
-    return render_template('inscription.html', inscription = data, promotion=data1, listeannule=data2, listesuspendu = data3 )
+@app.before_request 
+def before_request():
+    g.user = None
+    if 'user' in session:
+        g.user = session['user']
+        
+@app.route('/getsession')
+def getsession():
+    if 'user' in session:
+        return session['user']
+    return 'Not logged in!'
+
+@app.route('/dropsession')
+def dropsession():
+    session.pop('user', None)
+    return 'Dropped Session'
 
 @app.route("/insertapp", methods = ["POST"])
 def insertapp():
@@ -237,6 +264,7 @@ def updateprom():
         return redirect(url_for('promotion'))
     else:
         return render_template('promotion.html')
+
 
 
 
