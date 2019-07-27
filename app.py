@@ -176,14 +176,15 @@ def  reinscrire(id_data):
 @app.route("/referentiel",methods= ['GET','POST'])
 def referentiel():
         if request.method == 'POST':
-                details = request.form
-                nom_ref=details['nom_ref'] 
+                nom_ref=request.form['nom_ref'] 
+                
                 conn = connectToDB()
                 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
                 cur.execute("SELECT * FROM referentiel")
                 data = cur.fetchall()
                 cur.close()
                 conn.commit()
+                
                 control_ref=False
                 for row in data:
                         if row[1].lower() == nom_ref.lower():
@@ -219,37 +220,45 @@ def updateref():
     else:
         return render_template('referentiel.html')
 #Promotion
-@app.route("/promotion")  
+@app.route("/promotion", methods = ["GET", "POST"])  
 def promotion():
-    cur = connectToDB()
-    cur = cur.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-    cur.execute("SELECT id_promo, nom_promo,date_debut,date_fin, nom_ref FROM promotion,referentiel WHERE promotion.id_ref=referentiel.id_ref")
-    data = cur.fetchall()
-    cur.close()
-
     conn = connectToDB()
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute("SELECT * FROM referentiel")
     data1 = cur.fetchall()
-    conn.close()
-    return render_template('promotion.html', promotion = data, referentiel=data1 )
-
-@app.route("/insertprom", methods = ["GET", "POST"])
-def insertprom():
-    
-    flash("Ajout promo reussi")
-    
-    nom_promo = request.form['nom_promo']
-    date_debut = request.form['date_debut']
-    date_fin = request.form['date_fin']
-    id_ref = int(request.form['referentiel'])
-        
-    conn = connectToDB()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute("INSERT INTO promotion (nom_promo, date_debut, date_fin, id_ref) VALUES (%s, %s, %s, %s)", (nom_promo, date_debut, date_fin, id_ref,))
-        
+    cur.close()
     conn.commit()
-    return redirect(url_for('promotion'))
+
+    if request.method == 'POST':     
+        nom_promo = request.form['nom_promo']
+        date_debut = request.form['date_debut']
+        date_fin = request.form['date_fin']
+        id_ref = int(request.form['referentiel'])
+        
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        cur.execute("SELECT id_promo, nom_promo,date_debut,date_fin, nom_ref FROM promotion,referentiel WHERE promotion.id_ref=referentiel.id_ref")
+        data = cur.fetchall()
+        cur.close()
+        conn.commit()
+
+        control_promo=False
+        for row in data:
+                if row[1].lower() == nom_promo.lower():
+                        control_promo =True
+                        break
+        if control_promo == True  :                    
+                flash("Cette promotion existe deja")
+                return  render_template('promotion.html', promotion = data)
+        else:
+                flash("Ajout promo reussi")
+                cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+                cur.execute("INSERT INTO promotion (nom_promo, date_debut, date_fin, id_ref) VALUES (%s, %s, %s, %s)", (nom_promo, date_debut, date_fin, id_ref,)) 
+                conn.commit()
+                return  render_template('promotion.html', promotion = data)
+
+    return render_template('promotion.html', referentiel=data1)
+                
 #modifier promotion
 @app.route('/updateprom', methods = ['POST', 'GET'])
 def updateprom():

@@ -32,7 +32,7 @@
                   
                   <div id="promotion" role="dialog">
                         <div class="row">
-                                <form class="col s12" action="{{url_for('insertprom')}}" method="POST" >
+                                <form class="col s12" action="{{url_for('promotion')}}" method="POST" >
                                   <div class="row">
                                     <div class="input-field col s6">
                                       <input placeholder="Astou" id="nom_promo" type="text" class="validate" name="nom_promo">
@@ -76,24 +76,20 @@
                         <table class="responsive-table">
                                 
                                 <tr>
-                                  
                                     <th>Nom promotion</th>
                                     <th>Date debut</th>
                                     <th>Date fin</th>
                                     <th>Referentiel</th>
                                     <th>Action</th>
-                                    
                                 </tr>
                                
                                 {%for data in promotion%}
                                 
                                     <tr>
-                                        
                                         <td>{{data.1}}</td>
                                         <td>{{data.2}}</td>
                                         <td>{{data.3}}</td>
                                         <td>{{data.4}}</td>
-                                        
                                         <td>
                                             <a class="waves-effect waves-light btn modal-trigger" href="#modaledit{{data.0}}">Editer</a>
                                         </td>
