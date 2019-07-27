@@ -173,24 +173,34 @@ def  reinscrire(id_data):
         return redirect(url_for('inscription'))
 
 #Sauvegarde referentiel
-@app.route("/referentiel")
+@app.route("/referentiel",methods= ['GET','POST'])
 def referentiel():
-    cur = connectToDB()
-    cur = cur.cursor(cursor_factory=psycopg2.extras.DictCursor) 
-    cur.execute("SELECT * FROM referentiel")
-    data = cur.fetchall()
-    cur.close()
-    return render_template('referentiel.html', referentiel = data)
+        if request.method == 'POST':
+                details = request.form
+                nom_ref=details['nom_ref'] 
+                conn = connectToDB()
+                cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+                cur.execute("SELECT * FROM referentiel")
+                data = cur.fetchall()
+                cur.close()
+                conn.commit()
+                control_ref=False
+                for row in data:
+                        if row[1].lower() == nom_ref.lower():
+                                control_ref =True
+                                break
 
-@app.route("/insertref", methods = ["POST"])
-def insertref():
-    flash("Ajout réferentiel reussi")
-    nom_ref = request.form['nom_ref']   
-    conn = connectToDB()
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute("INSERT INTO referentiel (nom_ref) VALUES (%s)", (nom_ref,))
-    conn.commit()
-    return redirect(url_for('referentiel'))
+                if control_ref == True  :                    
+                        flash("Ce réferentiel existe deja")
+                        return  render_template('referentiel.html',referentiel=data)
+                else:
+                        flash("Ajout réferentiel reussi")
+                        cur.execute("INSERT INTO referentiel (nom_ref) VALUES (%s)", (nom_ref,))
+                        conn.commit()
+                        return  render_template('referentiel.html',referentiel=data)
+
+        return render_template('referentiel.html')
+
 #Modifier referentiel
 @app.route('/updateref', methods = ['POST', 'GET'])
 def updateref():
