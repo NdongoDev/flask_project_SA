@@ -189,7 +189,6 @@ def referentiel():
                         if row[1].lower() == nom_ref.lower():
                                 control_ref =True
                                 break
-
                 if control_ref == True  :                    
                         flash("Ce réferentiel existe deja")
                         return  render_template('referentiel.html',referentiel=data)
