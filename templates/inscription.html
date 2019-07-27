@@ -40,34 +40,34 @@
               <form class="col s12" action="{{url_for('insertapp')}}" method="POST">
                 <div class="row">
                   <div class="input-field col s6">
-                    <input placeholder="Astou" id="first_name" type="text" class="validate" name="first_name">
+                    <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name">
                     <label for="first_name">Prénom</label>
                   </div>
                   <div class="input-field col s6">
-                    <input placeholder="Ndiaye" id="last_name" type="text" class="validate" name="last_name">
+                    <input placeholder="Ndiaye" id="last_name" required="" aria-required="true" type="text" class="validate" name="last_name">
                     <label for="last_name">Nom</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
-                    <input placeholder="astoundiaye@sonatelacademy.sn" id="email" type="email" class="validate"
+                    <input placeholder="astoundiaye@sonatelacademy.sn" required="" aria-required="true" id="email" type="email" class="validate"
                       name="email">
                     <label for="email">Email</label>
                   </div>
                   <div class="input-field col s6">
-                      <input id="date_naissance" type="date" class="validate" name="date_naissance">
+                      <input id="date_naissance" required="" aria-required="true" type="date" min="2004-12-31" max="2030-12-31" name="date_naissance">
                       <label for="date_naiss">Date naissance</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
-                    <input placeholder="Mariste, villa 0784" id="adresse" type="text" class="validate" name="adresse">
+                    <input placeholder="Mariste, villa 0784" id="adresse" required="" aria-required="true" type="text" class="validate" name="adresse">
                     <label for="adresse">Adresse</label>
                   </div>
                 
                   <div class="input-field col s6">
                     <select name="promotion" id="promotion">
-                      <option value="" disabled selected>Choisir un promo</option>
+                      <option required="" aria-required="true" value="" disabled selected>Choisir un promo</option>
                       {% for data1 in promotion%}
                       <option value="{{data1[0]}}"> {{data1[1]}} </option>
                       {% endfor %}
@@ -77,15 +77,15 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <select name="statut" id="statut">
+                        <select name="statut" id="statut" required="" aria-required="true">
                             <option value="inscrit">Inscrit</option>
                         </select>
                       <label for="statut">Statut</label>
                     </div>
                 </div>
                 <div class="center">
-                  <button class="center btn waves-effect waves-light teal darken-4" type="submit" name="action"
-                    data-toggle="modal" data-target="#mymodal">Inscrir
+                  <button required="" aria-required="true" class="center btn waves-effect waves-light teal darken-4" type="submit" name="action"
+                    data-toggle="modal" data-target="#mymodal">Inscrire
                     <a href="inscription"><i class="material-icons right">send</i></a>
                   </button>
                 </div>
@@ -97,26 +97,18 @@
           <!--Liste apprenant-->
           
           <div id="liste_apprenant">
-              <div class="input-field col s12">
-                  <select name="promotion" id="promotion">
-                    <option value="" disabled selected>Choisir un promo</option>
-                    {% for data1 in promotion%}
-                    <option value="{{data1[0]}}"> {{data1[1]}} </option>
-                    {% endfor %}
-                  </select>
-                  <label>Promotion</label>
-              </div>
+              {% include "choix_promo.html" %}
             <table class="responsive-table">
                 <tr>
                  
-                  <th>matricule</th>
+                  <th>Matricule</th>
                   <th>Prénom</th>
                   <th>Nom</th>
                   <th>Email</th>
-                  <th class="center">Date naissance</th>
+                  <th>Date naissance</th>
                   <th>Adresse</th>
                   <th>Statut</th>
-                  <th>Nom promo</th>
+                  <th>Promo</th>
                   <th></th>
                   <th class="center">Action</th>
                 </tr>
@@ -132,14 +124,17 @@
                   <td>{{data.7}}</td>
                   <td>{{data.8}}</td>
                   <td>
-                    <a class="waves-effect waves-light btn modal-trigger" href="#modaledit{{data.0}}">Editer</a>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#modaledit{{data.0}}"><i class="material-icons">create</i></a>
+                      Editer
                   </td>
                   <td>
-                      <a href="/annulerins/{{data.0}}" class="modal-close waves-effect waves-red btn-flat"  onclick="return confirm('Voulez vous vraiment  annuler l\'inscription ?')"> annuler</a>  
-                  </td>
+                      <a href="/annulerins/{{data.0}}" class="waves-effect red btn modal-trigger"  onclick="return confirm('Voulez vous vraiment  annuler l\'inscription ?')"><i class="material-icons">cancel</i></a>  
+                      Annuler
+                    </td>
                   <td>
-                      <a href="/suspendreins/{{data.0}}" class="modal-close waves-effect waves-orange btn-flat"  onclick="return confirm('Voulez vous vraiment  suspendre l\'inscription ?')"> suspendre</a>  
-                  </td>
+                      <a href="/suspendreins/{{data.0}}" class="waves-effect orange btn modal-trigger"  onclick="return confirm('Voulez vous vraiment  suspendre l\'inscription ?')"><i class="material-icons">rotate_right</i></a>  
+                      Suspendre
+                    </td>
                 </tr>
                 {% endfor %}
             </table>
@@ -147,26 +142,18 @@
           <!--Liste apprenant annulé-->
           
         <div id="liste_annule">
-            <div class="input-field col s12">
-                <select name="promotion" id="promotion">
-                  <option value="" disabled selected>Choisir un promo</option>
-                  {% for data1 in promotion%}
-                  <option value="{{data1[0]}}"> {{data1[1]}} </option>
-                  {% endfor %}
-                </select>
-                <label>Promotion</label>
-            </div>
+            {% include "choix_promo.html" %}
           <table class="responsive-table">
               <tr>
               
-                <th>matricule</th>
+                <th>Matricule</th>
                 <th>Prénom</th>
                 <th>Nom</th>
-                <th class="center">Email</th>
-                <th class="center">Date naissance</th>
+                <th>Email</th>
+                <th>Date naissance</th>
                 <th>Adresse</th>
                 <th>Statut</th>
-                <th>Nom promo</th>
+                <th>Promo</th>
                 
               </tr>
             {%for data in listeannule%}
@@ -186,25 +173,17 @@
           <!--Liste apprenant annulé-->
           
         <div id="liste_suspendu">
-            <div class="input-field col s12">
-                <select name="promotion" id="promotion">
-                  <option value="" disabled selected>Choisir un promo</option>
-                  {% for data1 in promotion%}
-                  <option value="{{data1[0]}}"> {{data1[1]}} </option>
-                  {% endfor %}
-                </select>
-                <label>Promotion</label>
-            </div>
+            {% include "choix_promo.html" %}
           <table class="responsive-table">
               <tr>
-                <th>matricule</th>
+                <th>Matricule</th>
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th class="center">Email</th>
                 <th class="center">Date naissance</th>
                 <th>Adresse</th>
                 <th>Statut</th>
-                <th>Nom promo</th>
+                <th>Promo</th>
                 <th>Action</th>
                 
               </tr>

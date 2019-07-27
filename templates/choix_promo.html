@@ -1,0 +1,15 @@
+        <div class="row">
+            <div class="input-field col s6">
+                  <select name="promotion" id="promotion">
+                    <option value="" disabled selected>Choisir un promo</option>
+                    {% for data1 in promotion%}
+                    <option value="{{data1[0]}}"> {{data1[1]}} </option>
+                    {% endfor %}
+                  </select>
+                  <label>Promotion</label>
+            </div>
+            <div class="input-field col s6">
+                    <a href="#" class="waves-effect btn modal-trigger"><i class="material-icons">search</i>Rechercher</a>  
+                    
+            </div>
+        </div>
