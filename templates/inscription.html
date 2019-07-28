@@ -40,17 +40,17 @@
               <form class="col s12" action="{{url_for('insertapp')}}" method="POST">
                 <div class="row">
                   <div class="input-field col s6">
-                    <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name">
+                    <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name" onkeyup="nospaces(this)">
                     <label for="first_name">Prénom</label>
                   </div>
                   <div class="input-field col s6">
-                    <input placeholder="Ndiaye" id="last_name" required="" aria-required="true" type="text" class="validate" name="last_name">
+                    <input placeholder="Ndiaye" id="last_name" required="" aria-required="true" type="text" class="validate" name="last_name" onkeyup="nospaces(this)">
                     <label for="last_name">Nom</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
-                    <input placeholder="astoundiaye@sonatelacademy.sn" required="" aria-required="true" id="email" type="email" class="validate"
+                    <input placeholder="astoundiaye@sonatelacademy.sn" required="" aria-required="true" id="email" type="email" class="validate" onkeyup="nospaces(this)" 
                       name="email">
                     <label for="email">Email</label>
                   </div>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
-                    <input placeholder="Mariste, villa 0784" id="adresse" required="" aria-required="true" type="text" class="validate" name="adresse">
+                    <input placeholder="Mariste, villa 0784" id="adresse" required="" aria-required="true" type="text" class="validate" name="adresse" onkeyup="nospaces(this)">
                     <label for="adresse">Adresse</label>
                   </div>
                 

@@ -35,7 +35,7 @@
               <form class="col s12" action="{{url_for('referentiel')}}" method="POST">
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="nom_ref" type="text" class="validate" name="nom_ref">
+                    <input id="nom_ref" type="text" class="validate" name="nom_ref" onkeyup="nospaces(this)">
                     <label for="nom_ref">Nom réferentiel</label>
                   </div>
                 </div>
@@ -79,7 +79,7 @@
                                       <div class="form-group">
                                         <label> Nom promo:</label>
                                         <input type="hidden" name="id" value="{{row.0}}">  
-                                        <input type="text" class="form-control" name="nom_ref" value="{{row.1}}">
+                                        <input type="text" class="form-control" name="nom_ref" value="{{row.1}}" onkeyup="nospaces(this)">
                                       </div>
                                       <div class="center">
                                           <button class="btn btn-primary " onclick="M.toast({html: 'Bravos enregistrer avec succée'})" type="submit">
@@ -101,11 +101,5 @@
   </main>
   {% include "footer.html" %}
   {% include "scriptJS.html" %}
-  <script>
-    $(document).ready(function () {
-      $('.modal').modal();
-    });
-  </script>
-
   {% endblock %}
 </body>

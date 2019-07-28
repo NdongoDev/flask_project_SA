@@ -77,7 +77,6 @@ def dropsession():
 @app.route("/insertapp", methods = ["POST"])
 def insertapp():
     if request.method == "POST":
-        flash("Inscription reussi")
         prenom = request.form['first_name']
         nom = request.form['last_name']
         email = request.form['email']
@@ -103,6 +102,20 @@ def insertapp():
         else :
             m = i+1
             matricule = "SA-00"+str(date_actu)+str(m)
+        #verification apprenant(email)
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur.execute("""select * from apprenant""")
+        data=cur.fetchall()
+        conn.cursor()
+        control_app=False
+        for row in data:
+                if row[4].lower() == email.lower():
+                        control_app =True
+                        break
+        if control_app == True  :                    
+                flash("Cette email existe deja")
+                return  render_template('inscription.html', inscription = data)
         
         conn = connectToDB()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -111,6 +124,7 @@ def insertapp():
         try:
             cur.execute(sql, donnee)
             conn.commit()
+            flash("Inscription reussi")
         except:
             flash("Erreur d'execution de l'insertion")
             print(traceback.format_exc())
@@ -242,6 +256,7 @@ def promotion():
         cur.close()
         conn.commit()
 
+        #ajout verification promo
         control_promo=False
         for row in data:
                 if row[1].lower() == nom_promo.lower():
