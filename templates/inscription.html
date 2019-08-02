@@ -14,6 +14,30 @@
             des apprenants.
           </p>
         </div>
+        <div class="row">
+            <div class="col s12 m4">
+              <div class="card-panel teal">
+                  <h2><i class="medium material-icons">person_add</i> &nbsp;{{ inscription|length }} </h2>
+                <span class="white-text">Etudiants inscrit </span>
+              </div>
+            </div>
+        
+            <div class="col s12 m4">
+              <div class="card-panel red">
+                  <h2><i class="medium material-icons">account_circle</i> &nbsp;{{ listeannule|length }}</h2>
+                <span class="white-text">Etudiant annulés
+                </span>
+              </div>
+            </div>
+        
+            <div class="col s12 m4">
+              <div class="card-panel orange">
+                  <h2><i class="medium material-icons">account_circle</i> &nbsp;{{ listesuspendu|length }}</h2>
+                <span class="white-text">Etudiant suspendus
+                </span>
+              </div>
+            </div>
+        </div>
         {%with messages = get_flashed_messages()%}
         {%if messages%}
         {%for message in messages%}
@@ -61,7 +85,7 @@
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
-                    <input placeholder="Mariste, villa 0784" id="adresse" required="" aria-required="true" type="text" class="validate" name="adresse" onkeyup="nospaces(this)">
+                    <input placeholder="Mariste, villa 0784" id="adresse" required="" aria-required="true" type="text" class="validate" name="adresse">
                     <label for="adresse">Adresse</label>
                   </div>
                 
@@ -86,7 +110,7 @@
                 <div class="center">
                   <button required="" aria-required="true" class="center btn waves-effect waves-light teal darken-4" type="submit" name="action"
                     data-toggle="modal" data-target="#mymodal">Inscrire
-                    <a href="inscription"><i class="material-icons right">send</i></a>
+                    <a href="inscription"><em class="material-icons right">send</em></a>
                   </button>
                 </div>
               </form>
@@ -112,9 +136,9 @@
                   <th></th>
                   <th class="center">Action</th>
                 </tr>
+              
               {%for data in inscription%}
                 <tr>
-                  
                   <td>{{data.1}}</td>
                   <td>{{data.2}}</td>
                   <td>{{data.3}}</td>
@@ -156,6 +180,7 @@
                 <th>Promo</th>
                 
               </tr>
+            
             {%for data in listeannule%}
               <tr>
                 <td>{{data.1}}</td>
@@ -187,7 +212,8 @@
                 <th>Action</th>
                 
               </tr>
-            {%for data in listesuspendu%}
+            
+            {% for data in listesuspendu %}
               <tr>
                 <td>{{data.1}}</td>
                 <td>{{data.2}}</td>

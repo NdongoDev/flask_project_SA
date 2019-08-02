@@ -11,6 +11,13 @@
                         Bienvenue dans la page d'ajout de promotion! Vous y trouverez aussi la liste des promotions.
                     </p>
                 </div>
+                <div class="col s12 m6">
+                    <div class="center card-panel  blue darken-4">
+                        <h2><i class="medium material-icons">supervisor_account</i> &nbsp;{{ listeprom|length }}</h2>
+                      <span class="white-text">Nombre de promotions
+                      </span>
+                    </div>
+              </div>
                 {%with messages = get_flashed_messages()%}
                 {%if messages%}
                 {%for message in messages%}
@@ -35,7 +42,7 @@
                                 <form class="col s12" action="{{url_for('promotion')}}" method="POST" >
                                   <div class="row">
                                     <div class="input-field col s6">
-                                      <input placeholder="Astou" id="nom_promo" type="text" class="validate" name="nom_promo" onkeyup="nospaces(this)">
+                                      <input placeholder="Astou" id="nom_promo" type="text" class="validate" name="nom_promo">
                                       <label for="nom_promo">Nom promotion</label>
                                     </div>
                                     <div class="input-field col s6">

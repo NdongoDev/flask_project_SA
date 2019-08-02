@@ -12,6 +12,13 @@
             Bienvenue dans la page d'ajout de réferentiel! Vous y trouverez aussi la liste des réferentiels.
           </p>
         </div>
+        <div class="col s12 m6">
+            <div class="center card-panel  cyan">
+                <h2><i class="medium material-icons">folder_special</i> &nbsp;{{ liste_ref|length }}</h2>
+              <span class="white-text">Nombre de réferentiels
+              </span>
+            </div>
+    </div>
         {%with messages = get_flashed_messages()%}
         {%if messages%}
         {%for message in messages%}
@@ -35,7 +42,7 @@
               <form class="col s12" action="{{url_for('referentiel')}}" method="POST">
                 <div class="row">
                   <div class="input-field col s6">
-                    <input id="nom_ref" type="text" class="validate" name="nom_ref" onkeyup="nospaces(this)">
+                    <input id="nom_ref" type="text" class="validate" name="nom_ref">
                     <label for="nom_ref">Nom réferentiel</label>
                   </div>
                 </div>

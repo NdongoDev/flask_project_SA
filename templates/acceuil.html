@@ -1,0 +1,94 @@
+{% include "head.html" %}
+
+<body>
+
+  {% block body %}
+  {% include "header.html" %}
+    <main>
+        <h3 class="center">Bienvenue sur la plateforme de gestion <br> des apprenants de la Sonatel Academy.</h3>
+        <h5 class="center"><b> Statistiques:</b></h5>
+            <div class="row">
+                    <div class="col s12 m4">
+                      <div class="center card-panel teal">
+                          <h2><i class="medium material-icons">person_add</i> &nbsp;{{ inscription|length }} </h2>
+                        <span class="white-text">Etudiants inscrit </span>
+                      </div>
+                    </div>
+                
+                    <div class="col s12 m4">
+                      <div class="center card-panel red">
+                          <h2><i class="medium material-icons">account_circle</i> &nbsp;{{ listeannule|length }}</h2>
+                        <span class="white-text">Etudiants annulés
+                        </span>
+                      </div>
+                    </div>
+                
+                    <div class="col s12 m4">
+                      <div class="center card-panel orange">
+                          <h2><i class="medium material-icons">account_circle</i> &nbsp;{{ listesuspendu|length }}</h2>
+                        <span class="white-text">Etudiants suspendus
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col s12 m6">
+                            <div class="center card-panel  cyan">
+                                <h2><i class="medium material-icons">folder_special</i> &nbsp;{{ listeref|length }}</h2>
+                              <span class="white-text">Nombre de réferentiels
+                              </span>
+                            </div>
+                    </div>
+                    <div class="col s12 m6">
+                            <div class="center card-panel  blue darken-4">
+                                <h2><i class="medium material-icons">supervisor_account</i> &nbsp;{{ promotion|length }}</h2>
+                              <span class="white-text">Nombre de promotions
+                              </span>
+                            </div>
+                    </div>
+                    <h3 class="center header">Ils parlent de nous</h3>
+                    <div class="col s12 m6">
+                            <div class="card">
+                              <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="http://reussirbusiness.com/wp-content/uploads/2019/01/Sonatel-Academy.jpg">
+                              </div>
+                              <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">1ere promotion de Sonatel Academy, taux de réussite de 97%<i class="material-icons right">more_vert</i></span>
+                
+                                <p><a href="http://reussirbusiness.com/actualites/1ere-promotion-de-sonatel-academy-taux-de-reussite-de-97/!">Plus d'information</a></p>
+                              </div>
+                              <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">1ere promotion de Sonatel Academy, taux de réussite de 97%<i class="material-icons right">close</i></i></span>
+                                <p>Cette première promotion confirme l’intérêt que la Sonatel accorde à la formation de futurs entrepreneurs de l’écosystème numérique, s’est félicité M Alioune Ndiaye aujourd’hui Directeur général de Orange Afrique et Moyen Orient et parrain de cette promotion sortante.
+
+                                        Le Directeur général de la Sonatel, M Sékou Dramé, s’est félicité de cette initiative qui entre dans le cadre de la politique RSE de la société de téléphonie et d’accompagner le gouvernement du Sénégal dans la mise en œuvre de sa stratégie Sénégal numérique 2025.
+                                        
+                                        « Sonatel Académy est une initiative majeure puisque c’est la première école de codage gratuite au Sénégal et dans la sous-région qui nous permet de former des jeunes sans emplois ou étudiants aux métiers des techniques du numérique pour les aider à s’insérer dans le marché du travail mais également pour ceux qui en expriment le souhait, de lancer eux-mêmes leurs Start up » a déclaré Sékou Dramé.</p>
+                              </div>
+                            </div>
+                    </div>
+                    <div class="col s12 m6">
+                            
+                            <div class="card">
+                              <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="https://pbs.twimg.com/media/D-ikCSPWsAMP4oP.jpg">
+                              </div>
+                              <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">SONATEL ACADEMY : LES 46 DIPLÔMÉS DE LA PREMIÈRE PROMOTION DE DÉVELOPPEURS WEB ÉTRENNENT LEUR CERTIFICATION<i class="material-icons right">more_vert</i></span>
+                
+                                <p><a href="http://innovafrica.net/sonatel-academy-les-46-sortants-de-la-premiere-promotion-de-developpeurs-web-etrennent-leur-certification/">Plus d'information</a></p>
+                              </div>
+                              <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">SONATEL ACADEMY : LES 46 DIPLÔMÉS DE LA PREMIÈRE PROMOTION DE DÉVELOPPEURS WEB ÉTRENNENT LEUR CERTIFICATION<i class="material-icons right">close</i></i></span>
+                                <p>Rataché au volet RSE de la Sonatel, et inaugurée le 13 Novembre 2017 par l'ancien directeur de la Sonatel Mr Alioune Ndiaye, la Sonatel Academy est la première école de codage gratuite du Senegal et dans la sous -région. Elle a pour mission de: 1- Accompagner L'État du Sénégal dans sa - politique de digitalisation en investissant sur le capital humain 2- Répondre aux besoins en compétence numérique et renforcer l'employabilité des jeunes. 3- Former aux métiers du numérique 4- Donner aux jeunes les bases nécessaire (amorçage) 5- Donner aux jeunes la capacité de travailler seul et l'envie de travailler en équipe 6- Faire entrer les jeunes sur le marche du travail à travers les TIC. #CodingForBetterLife"</p>
+                              </div>
+                            </div>
+                    </div>
+            </div>
+                
+    </main>
+{% include "footer.html" %}
+{% include "scriptJS.html" %}
+
+{% endblock %}
+</body>
+
+</html>

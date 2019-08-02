@@ -22,15 +22,11 @@ def Index():
            session.pop('user', None)
            if request.form['password'] == 'password':
                 session['user'] = request.form['username']
-                return redirect(url_for('inscription'))
+                return redirect(url_for('acceuil'))
         return render_template('login.html')
 
-
-#inscription Apprenant
-@app.route("/inscription")
-def inscription():
-    if g.user: 
-            
+@app.route("/acceuil")
+def acceuil():  
         conn = connectToDB()
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
         cur.execute("SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='inscrit'")
@@ -54,8 +50,51 @@ def inscription():
         cur.execute("""SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='suspendu' """)
         data3 =cur.fetchall()
         conn.commit()
+
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        cur.execute("SELECT * FROM referentiel")
+        data4 = cur.fetchall()
+        conn.commit()
+
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        cur.execute("SELECT * FROM promotion")
+        data5 = cur.fetchall()
+        conn.commit()
+
+        return render_template('acceuil.html', inscription = data, promotion=data1, listeannule=data2, listesuspendu = data3, listeref = data4, listeprom = data5 )
+
+#inscription Apprenant
+@app.route("/inscription")
+def inscription():
+    if g.user:      
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        cur.execute("SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='inscrit'")
+        data = cur.fetchall()
+        conn.commit()
+
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur.execute("SELECT * FROM promotion")
+        data1 = cur.fetchall()
+        conn.commit()
+
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur.execute("""SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='annulé' """)
+        data2 =cur.fetchall()
+        conn.commit()
+
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cur.execute("""SELECT id_apprenant, matricule, prenom, nom, email, date_naissance, adresse, statut, nom_promo FROM apprenant,promotion WHERE apprenant.id_promo=promotion.id_promo and apprenant.statut='suspendu' """)
+        data3 =cur.fetchall()
+        conn.commit()
+
         return render_template('inscription.html', inscription = data, promotion=data1, listeannule=data2, listesuspendu = data3 )
-    return redirect(url_for('Index'))
+ 
 
 @app.before_request 
 def before_request():
@@ -107,6 +146,7 @@ def insertapp():
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         cur.execute("""select * from apprenant""")
         data=cur.fetchall()
+        
         conn.cursor()
         control_app=False
         for row in data:
@@ -189,6 +229,11 @@ def  reinscrire(id_data):
 #Sauvegarde referentiel
 @app.route("/referentiel",methods= ['GET','POST'])
 def referentiel():
+        conn = connectToDB()
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) 
+        cur.execute("SELECT * FROM referentiel")
+        data = cur.fetchall()
+        conn.commit()
         if request.method == 'POST':
                 nom_ref=request.form['nom_ref'] 
                 
@@ -213,7 +258,7 @@ def referentiel():
                         conn.commit()
                         return  render_template('referentiel.html',referentiel=data)
 
-        return render_template('referentiel.html')
+        return render_template('referentiel.html', liste_ref = data)
 
 #Modifier referentiel
 @app.route('/updateref', methods = ['POST', 'GET'])
@@ -236,6 +281,12 @@ def updateref():
 #Promotion
 @app.route("/promotion", methods = ["GET", "POST"])  
 def promotion():
+    conn = connectToDB()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute("SELECT * FROM promotion")
+    data = cur.fetchall()
+    conn.commit()
+
     conn = connectToDB()
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute("SELECT * FROM referentiel")
@@ -272,7 +323,7 @@ def promotion():
                 conn.commit()
                 return  render_template('promotion.html', promotion = data)
 
-    return render_template('promotion.html', referentiel=data1)
+    return render_template('promotion.html', referentiel=data1, listeprom = data)
                 
 #modifier promotion
 @app.route('/updateprom', methods = ['POST', 'GET'])
