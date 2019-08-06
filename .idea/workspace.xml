@@ -1,195 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e302ab53-6c3b-4da9-8380-405700bda3bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/.versions" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/accordion.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/accordion.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/accordion.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/accordion.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/ad.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/ad.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/api.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/api.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/breadcrumb.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/breadcrumb.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/button.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/button.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/card.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/card.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/checkbox.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/checkbox.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/checkbox.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/checkbox.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/colorize.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/colorize.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/comment.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/comment.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/container.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/container.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/dimmer.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/dimmer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/dimmer.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/dimmer.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/divider.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/divider.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/dropdown.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/dropdown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/dropdown.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/dropdown.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/embed.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/embed.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/embed.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/embed.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/feed.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/feed.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/flag.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/flag.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/form.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/form.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/form.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/grid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/header.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/header.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/icon.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/icon.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/image.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/image.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/input.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/input.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/item.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/item.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/label.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/label.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/list.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/list.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/loader.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/loader.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/menu.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/menu.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/message.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/message.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/modal.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/modal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/modal.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/modal.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/nag.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/nag.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/nag.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/nag.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/placeholder.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/placeholder.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/popup.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/popup.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/popup.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/popup.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/progress.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/progress.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/progress.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/progress.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/rail.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/rail.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/rating.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/rating.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/rating.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/rating.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/reset.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/reset.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/reveal.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/reveal.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/search.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/search.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/search.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/segment.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/segment.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/shape.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/shape.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/shape.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/shape.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/sidebar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/sidebar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/sidebar.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/sidebar.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/site.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/site.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/site.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/site.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/state.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/state.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/statistic.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/statistic.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/step.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/step.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/sticky.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/sticky.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/sticky.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/sticky.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/tab.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/tab.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/tab.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/tab.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/table.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/table.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/transition.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/transition.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/transition.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/transition.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/video.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/video.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/video.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/video.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/visibility.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/visibility.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/visit.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/components/visit.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/package.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/semantic.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/semantic.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/semantic.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/semantic.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/brand-icons.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/brand-icons.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/brand-icons.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/brand-icons.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/brand-icons.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/icons.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/icons.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/icons.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/icons.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/icons.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/icons.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/outline-icons.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/outline-icons.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/outline-icons.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/outline-icons.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/fonts/outline-icons.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Semantic/themes/default/assets/images/flags.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/materialize.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/materialize.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/image/academylogo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/image/yuna.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery-3.3.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jsfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/materialize.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/materialize.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/acceuil.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/acceuil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inscription.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inscription.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/promotion.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/promotion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/referentiel.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/referentiel.html" afterDir="false" />
-    </list>
+    <list default="true" id="e302ab53-6c3b-4da9-8380-405700bda3bb" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +38,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -238,10 +49,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gestedu" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -300,7 +112,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25973153" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />

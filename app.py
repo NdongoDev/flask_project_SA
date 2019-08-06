@@ -95,7 +95,6 @@ def inscription():
 
         return render_template('inscription.html', inscription = data, promotion=data1, listeannule=data2, listesuspendu = data3 )
  
-
 @app.before_request 
 def before_request():
     g.user = None
